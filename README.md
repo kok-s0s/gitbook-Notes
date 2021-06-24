@@ -10,3 +10,5 @@ Hei！
 
 [Github](https://github.com/kok-s0s)---kok-s0s
 
+在线阅览地址：[https://2694308562.gitbook.io/notes/](https://2694308562.gitbook.io/notes/)
+
