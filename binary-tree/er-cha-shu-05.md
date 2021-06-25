@@ -96,5 +96,128 @@ var insertIntoBST = function (root, val) {
 };
 ```
 
+### 无返回值的递归
 
+```javascript
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} val
+ * @return {TreeNode}
+ */
+var insertIntoBST = function (root, val) {
+    let parent = new TreeNode(0);
+    const preOrder = (cur, val) => {
+        if (cur === null) {
+            let node = new TreeNode(val);
+            if (parent.val > val)
+                parent.left = node;
+            else
+                parent.right = node;
+            return;
+        }
+        parent = cur;
+        if (cur.val > val)
+            preOrder(cur.left, val);
+        if (cur.val < val)
+            preOrder(cur.right, val);
+    }
+    if (root === null)
+        root = new TreeNode(val);
+    preOrder(root, val);
+    return root;
+};
+```
+
+### 迭代
+
+```javascript
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} val
+ * @return {TreeNode}
+ */
+var insertIntoBST = function (root, val) {
+    if (root === null) {
+        root = new TreeNode(val);
+    } else {
+        let parent = new TreeNode(0);
+        let cur = root;
+        while (cur) {
+            parent = cur;
+            if (cur.val > val)
+                cur = cur.left;
+            else
+                cur = cur.right;
+        }
+        let node = new TreeNode(val);
+        if (parent.val > val)
+            parent.left = node;
+        else
+            parent.right = node;
+    }
+    return root;
+};
+```
+
+## **删除二叉搜索树中的节点**
+
+### **递归**
+
+```javascript
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} key
+ * @return {TreeNode}
+ */
+var deleteNode = function (root, key) {
+    if (root === null)
+        return root;
+    if (root.val === key) {
+        if (!root.left)
+            return root.right;
+        else if (!root.right)
+            return root.left;
+        else {
+            let cur = root.right;
+            while (cur.left) {
+                cur = cur.left;
+            }
+            cur.left = root.left;
+            let temp = root;
+            root = root.right;
+            delete root;
+            return root;
+        }
+    }
+    if (root.val > key)
+        root.left = deleteNode(root.left, key);
+    if (root.val < key)
+        root.right = deleteNode(root.right, key);
+    return root;
+};
+```
 
