@@ -116,3 +116,61 @@ var sortedSquares = function (nums) {
 };
 ```
 
+## 长度最小的子数组
+
+### 暴力法
+
+```javascript
+/**
+ * @param {number} target
+ * @param {number[]} nums
+ * @return {number}
+ */
+var minSubArrayLen = function (target, nums) {
+    let result = Number.MAX_SAFE_INTEGER;
+    let sum = 0;
+    let subLength = 0;
+    for (let i = 0; i < nums.length; ++i) {
+        sum = 0;
+        for (let j = i; j < nums.length; ++j) {
+            sum += nums[j];
+            if (sum >= target) {
+                subLength = j - i + 1;
+                result = result < subLength ? result : subLength;
+                break;
+            }
+        }
+    }
+    return result === Number.MAX_SAFE_INTEGER ? 0 : result;
+};
+```
+
+### 滑动窗口
+
+> 双指针的一种方法
+
+即**不断地调节子序列的起始位置和终止位置，从而得出我们要想的结果**。
+
+```javascript
+/**
+ * @param {number} target
+ * @param {number[]} nums
+ * @return {number}
+ */
+var minSubArrayLen = function (target, nums) {
+    let result = Number.MAX_SAFE_INTEGER;
+    let sum = 0;
+    let subLength = 0;
+    let i = 0;
+    for (let j = 0; j < nums.length; ++j) {
+        sum += nums[j];
+        while (sum >= target) {
+            subLength = j - i + 1;
+            result = result < subLength ? result : subLength;
+            sum -= nums[i++];
+        }
+    }
+    return result === Number.MAX_SAFE_INTEGER ? 0 : result;
+};Ï
+```
+
