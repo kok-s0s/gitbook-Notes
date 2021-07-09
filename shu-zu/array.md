@@ -171,6 +171,47 @@ var minSubArrayLen = function (target, nums) {
         }
     }
     return result === Number.MAX_SAFE_INTEGER ? 0 : result;
-};Ï
+};
 ```
+
+## **螺旋矩阵 II**
+
+> **模拟**
+>
+> 创建二维数组的方法
+>
+> ```javascript
+> const res = Array.from({ length: n }).map(() => new Array(n));
+> ```
+
+```javascript
+/**
+ * @param {number} n
+ * @return {number[][]}
+ */
+var generateMatrix = function (n) {
+    const res = Array.from({ length: n }).map(() => new Array(n));
+    let high = 0, low = n - 1, left = 0, right = n - 1;
+    let number = 0;
+    while (number != n * n) {
+        for (let i = left; i <= right; ++i)
+            res[high][i] = ++number;
+        for (let i = high + 1; i <= low; ++i)
+            res[i][right] = ++number;
+        for (let i = right - 1; i >= left; --i)
+            res[low][i] = ++number;
+        for (let i = low - 1; i > high; --i) {
+            res[i][left] = ++number;
+        }
+        high++;
+        right--;
+        low--;
+        left++;
+    }
+    return res;
+};
+```
+
+  
+
 
