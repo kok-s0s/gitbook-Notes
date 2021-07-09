@@ -54,3 +54,164 @@ var search = function (nums, target) {
 };
 ```
 
+## 移除元素
+
+### 双指针法---快慢指针
+
+```javascript
+/**
+ * @param {number[]} nums
+ * @param {number} val
+ * @return {number}
+ */
+var removeElement = function(nums, val) {
+    let newLength = 0;
+    for(let i = 0; i < nums.length; ++i)
+        if(nums[i] !== val)
+            nums[newLength++] = nums[i];
+    return newLength;
+};
+```
+
+## 有序数组的平方
+
+### 暴力法
+
+```javascript
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var sortedSquares = function (nums) {
+    for (let index in nums) {
+        nums[index] = Math.pow(nums[index], 2)
+    }
+    return nums.sort((a, b) => a - b);
+};
+```
+
+### 双指针法
+
+```javascript
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var sortedSquares = function (nums) {
+    let left = 0;
+    let right = nums.length - 1;
+    let k = nums.length - 1;
+    let newArr = new Array(nums.length);
+    while (left <= right) {
+        if (nums[left] * nums[left] < nums[right] * nums[right]) {
+            newArr[k--] = nums[right] * nums[right];
+            right--;
+        }
+        else {
+            newArr[k--] = nums[left] * nums[left];
+            left++;
+        }
+    }
+    return newArr;
+};
+```
+
+## 长度最小的子数组
+
+### 暴力法
+
+```javascript
+/**
+ * @param {number} target
+ * @param {number[]} nums
+ * @return {number}
+ */
+var minSubArrayLen = function (target, nums) {
+    let result = Number.MAX_SAFE_INTEGER;
+    let sum = 0;
+    let subLength = 0;
+    for (let i = 0; i < nums.length; ++i) {
+        sum = 0;
+        for (let j = i; j < nums.length; ++j) {
+            sum += nums[j];
+            if (sum >= target) {
+                subLength = j - i + 1;
+                result = result < subLength ? result : subLength;
+                break;
+            }
+        }
+    }
+    return result === Number.MAX_SAFE_INTEGER ? 0 : result;
+};
+```
+
+### 滑动窗口
+
+> 双指针的一种方法
+
+即**不断地调节子序列的起始位置和终止位置，从而得出我们要想的结果**。
+
+```javascript
+/**
+ * @param {number} target
+ * @param {number[]} nums
+ * @return {number}
+ */
+var minSubArrayLen = function (target, nums) {
+    let result = Number.MAX_SAFE_INTEGER;
+    let sum = 0;
+    let subLength = 0;
+    let i = 0;
+    for (let j = 0; j < nums.length; ++j) {
+        sum += nums[j];
+        while (sum >= target) {
+            subLength = j - i + 1;
+            result = result < subLength ? result : subLength;
+            sum -= nums[i++];
+        }
+    }
+    return result === Number.MAX_SAFE_INTEGER ? 0 : result;
+};
+```
+
+## **螺旋矩阵 II**
+
+> **模拟**
+>
+> 创建二维数组的方法
+>
+> ```javascript
+> const res = Array.from({ length: n }).map(() => new Array(n));
+> ```
+
+```javascript
+/**
+ * @param {number} n
+ * @return {number[][]}
+ */
+var generateMatrix = function (n) {
+    const res = Array.from({ length: n }).map(() => new Array(n));
+    let high = 0, low = n - 1, left = 0, right = n - 1;
+    let number = 0;
+    while (number != n * n) {
+        for (let i = left; i <= right; ++i)
+            res[high][i] = ++number;
+        for (let i = high + 1; i <= low; ++i)
+            res[i][right] = ++number;
+        for (let i = right - 1; i >= left; --i)
+            res[low][i] = ++number;
+        for (let i = low - 1; i > high; --i) {
+            res[i][left] = ++number;
+        }
+        high++;
+        right--;
+        low--;
+        left++;
+    }
+    return res;
+};
+```
+
+  
+
+
