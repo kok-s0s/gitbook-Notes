@@ -6,6 +6,10 @@
 
 * [Array](shu-zu/array.md)
 
+## 链表
+
+* [List](lian-biao/list.md)
+
 ## 二叉树 <a id="binary-tree"></a>
 
 * [二叉树-01](binary-tree/er-cha-shu.md)
