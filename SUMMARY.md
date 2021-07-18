@@ -10,6 +10,10 @@
 
 * [List](lian-biao/list.md)
 
+## 哈希表
+
+* [Hash](ha-xi-biao/hash.md)
+
 ## 二叉树 <a id="binary-tree"></a>
 
 * [二叉树-01](binary-tree/er-cha-shu.md)
