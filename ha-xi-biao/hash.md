@@ -77,7 +77,7 @@ var isHappy = function (n) {
 
 ## 两数之和
 
-互补的思想 使用map这个数据结构
+互补的思想 使用Map这个数据结构
 
 ```javascript
 /**
@@ -97,4 +97,31 @@ var twoSum = function (nums, target) {
 ```
 
 ## **四数相加 II**
+
+**先使用Map这个数据结构存储前两个数组所有合的组合情况，再从剩下两个数组里寻求答案。**
+
+```javascript
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @param {number[]} nums3
+ * @param {number[]} nums4
+ * @return {number}
+ */
+var fourSumCount = function (nums1, nums2, nums3, nums4) {
+    let count = 0;
+    let twoSumMap = new Map();
+    for (let num1 of nums1) {
+        for (let num2 of nums2)
+            twoSumMap.set(num1 + num2, (twoSumMap.get(num1 + num2) || 0) + 1);
+    }
+    for (let num3 of nums3) {
+        for (let num4 of nums4) {
+            let tempSum = num3 + num4;
+            count += (twoSumMap.get(0 - tempSum) || 0);
+        }
+    }
+    return count;
+};
+```
 
