@@ -125,3 +125,170 @@ var fourSumCount = function (nums1, nums2, nums3, nums4) {
 };
 ```
 
+## **赎金信**
+
+```javascript
+/**
+ * @param {string} ransomNote
+ * @param {string} magazine
+ * @return {boolean}
+ */
+var canConstruct = function (ransomNote, magazine) {
+    const hashTable = new Array(26).fill(0);
+    let len = ransomNote.length;
+
+    for (let i = 0; i < magazine.length; ++i) {
+        hashTable[magazine[i].charCodeAt() - 97]++;
+    }
+    for (let i = 0; i < ransomNote.length; ++i) {
+        if (hashTable[ransomNote[i].charCodeAt() - 97]) {
+            hashTable[ransomNote[i].charCodeAt() - 97]--;
+            len--;
+        }
+    }
+
+    return (len === 0);
+};
+```
+
+## 三数之和
+
+### 双指针做法
+
+```javascript
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var threeSum = function (nums) {
+    const res = [];
+
+    if (nums.length < 3)
+        return res;
+
+    nums.sort((a, b) => a - b);
+
+    for (let i = 0; i < nums.length - 2; ++i) {
+        if (nums[i] > 0)
+            return res;
+
+        if (i > 0 && nums[i] === nums[i - 1])
+            continue;
+
+        let left = i + 1;
+        let right = nums.length - 1;
+        while (left < right) {
+            if (nums[i] + nums[left] + nums[right] === 0) {
+                res.push([nums[i], nums[left], nums[right]]);
+                while (left < right && nums[left] === nums[left + 1])
+                    ++left;
+                while (left < right && nums[right] === nums[right - 1])
+                    --right;
+                ++left;
+                --right;
+            } else if (nums[i] + nums[left] + nums[right] < 0)
+                ++left;
+            else
+                --right;
+        }
+    }
+    return res;
+};
+```
+
+### 哈希法
+
+```javascript
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var threeSum = function (nums) {
+    const res = [];
+
+    if (nums.length < 3)
+        return res;
+
+    nums.sort((a, b) => a - b);
+
+    for (let i = 0; i < nums.length - 2; ++i) {
+        if (nums[i] > 0)
+            return res;
+
+        if (i > 0 && nums[i] === nums[i - 1])
+            continue;
+
+        let tempRes = new Set();
+        for (let j = i + 1; j < nums.length; ++j) {
+            if (j > i + 2 && nums[j] === nums[j - 1] && nums[j - 1] === nums[j - 2])
+                continue;
+            let last = 0 - nums[i] - nums[j];
+            if (tempRes.has(last)) {
+                res.push([nums[i], nums[j], last]);
+                tempRes.delete(last);
+            } else
+                tempRes.add(nums[j]);
+        }
+    }
+    return res;
+};
+```
+
+## 四数之和
+
+```javascript
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[][]}
+ */
+var fourSum = function (nums, target) {
+    const res = [];
+
+    if (nums.length < 4)
+        return res;
+
+    nums.sort((a, b) => a - b);
+
+    for (let i = 0; i < nums.length - 3; ++i) {
+        if (target <= 0 && nums[i] > 0)
+            return res;
+        if (nums[i] + nums[i + 1] + nums[i + 2] + nums[i + 3] > target)
+            return res;
+
+        if (i > 0 && nums[i] === nums[i - 1])
+            continue;
+
+        let newTarget = target - nums[i];
+
+        for (let j = i + 1; j < nums.length - 2; ++j) {
+            if (j > i + 1 && nums[j] === nums[j - 1])
+                continue;
+
+            let left = j + 1;
+            let right = nums.length - 1;
+
+            while (left < right) {
+                // console.log(nums[i], nums[j], nums[left], nums[right]);
+                if (nums[j] + nums[left] + nums[right] === newTarget) {
+                    res.push([nums[i], nums[j], nums[left], nums[right]]);
+                    while (left < right && nums[left] === nums[left + 1])
+                        ++left;
+                    while (left < right && nums[right] === nums[right - 1])
+                        --right;
+                    ++left;
+                    --right;
+                } else if (nums[j] + nums[left] + nums[right] < newTarget)
+                    ++left;
+                else
+                    --right;
+            }
+        }
+    }
+
+    return res;
+};
+```
+
+
+
