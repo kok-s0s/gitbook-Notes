@@ -14,6 +14,10 @@
 
 * [Hash](ha-xi-biao/hash.md)
 
+## 字符串
+
+* [String](zi-fu-chuan/string.md)
+
 ## 二叉树 <a id="binary-tree"></a>
 
 * [二叉树-01](binary-tree/er-cha-shu.md)
