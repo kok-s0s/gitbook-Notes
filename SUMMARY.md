@@ -29,4 +29,5 @@
 ## 回溯算法 <a id="backtracking-algorithm"></a>
 
 * [回溯算法-01](backtracking-algorithm/basic.md)
+* [回溯算法-02](backtracking-algorithm/hui-su-suan-fa-02.md)
 
