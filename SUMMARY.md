@@ -30,4 +30,5 @@
 
 * [回溯算法-01](backtracking-algorithm/basic.md)
 * [回溯算法-02](backtracking-algorithm/hui-su-suan-fa-02.md)
+* [回溯算法-03](backtracking-algorithm/hui-su-suan-fa-03.md)
 
