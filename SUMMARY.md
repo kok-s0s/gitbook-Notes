@@ -33,3 +33,7 @@
 * [回溯算法-03](backtracking-algorithm/hui-su-suan-fa-03.md)
 * [回溯算法-04](backtracking-algorithm/hui-su-suan-fa-04.md)
 
+## 贪心算法
+
+* [贪心算法-01](tan-xin-suan-fa/tan-xin-suan-fa-01.md)
+
