@@ -38,8 +38,5 @@
 * [贪心算法-01](tan-xin-suan-fa/tan-xin-suan-fa-01.md)
 * [贪心算法-02](tan-xin-suan-fa/tan-xin-suan-fa-02.md)
 * [贪心算法-03](tan-xin-suan-fa/tan-xin-suan-fa-03.md)
-
----
-
-* [贪心算法-04](tan-xin-suan-fa-04.md)
+* [贪心算法-04](tan-xin-suan-fa/tan-xin-suan-fa-04.md)
 
