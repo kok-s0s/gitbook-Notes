@@ -45,4 +45,5 @@
 
 * [动态规划-01](dong-tai-gui-hua/dong-tai-gui-hua-01.md)
 * [动态规划-02](dong-tai-gui-hua/dong-tai-gui-hua-02.md)
+* [动态规划-背包](dong-tai-gui-hua/dong-tai-gui-hua-bei-bao.md)
 
