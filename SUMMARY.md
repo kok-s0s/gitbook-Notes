@@ -41,3 +41,8 @@
 * [贪心算法-04](tan-xin-suan-fa/tan-xin-suan-fa-04.md)
 * [贪心算法-05](tan-xin-suan-fa/tan-xin-suan-fa-05.md)
 
+## 动态规划
+
+* [动态规划-01](dong-tai-gui-hua/dong-tai-gui-hua-01.md)
+* [动态规划-02](dong-tai-gui-hua/dong-tai-gui-hua-02.md)
+
