@@ -9,6 +9,30 @@
 
 
 ```javascript
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var canPartition = function (nums) {
+    let sum = 0;
 
+    for (let num of nums) {
+        sum += num;
+    }
+
+    if (sum % 2)
+        return false;
+
+    let dpLen = Math.floor(sum / 2);
+    let dp = new Array(dpLen + 1).fill(0);
+
+    for (let i = 0; i < nums.length; ++i) {
+        for (let j = dpLen; j >= nums[i]; --j) {
+            dp[j] = Math.max(dp[j], dp[j - nums[i]] + nums[i]);
+        }
+    }
+
+    return dp[dpLen] === dpLen;
+};
 ```
 
